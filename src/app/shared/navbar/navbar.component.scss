@@ -1,0 +1,20 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+span:focus {
+  outline: none;
+  border: 0;
+}
+span {
+  cursor: pointer;
+}
+
+.active{
+  color: #ff5252;
+}
+.mat-raised-button{
+  display: grid;
+  margin: auto;
+  width: 90%;
+}

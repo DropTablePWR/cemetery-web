@@ -1,0 +1,26 @@
+.cemetery-map{
+  border: solid 2px #000;
+  border-radius: 3px;
+  padding: 20px;
+  margin: 10px;
+}
+.cemetery-description{
+  width: 80%;
+  margin: auto;
+}
+.mat-grid-list {
+  display: block;
+  position: relative;
+  width: 95%;
+  margin: auto;
+}
+.mat-grid-tile.not_null {
+  border: solid 2px #000;
+  border-radius: 3px;
+}
+.mat-grid-tile.guest {
+  text-align: center;
+  border: solid 2px #000;
+  border-radius: 3px;
+  background-color: #709946;
+}

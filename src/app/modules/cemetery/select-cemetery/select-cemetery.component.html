@@ -1,0 +1,10 @@
+<mat-list>
+  <h1 mat-subheader>Available Cemeteries</h1>
+  <mat-list-item *ngFor="let cemetery of cemeteryService.cemeteriesList">
+    <mat-icon  mat-list-icon>account_balance</mat-icon>
+    <h2 mat-line>{{cemetery.name}}</h2>
+    <p mat-line> {{cemetery.description}} </p>
+    <button mat-button color="accent" routerLink="/cemetery/{{cemetery.id}}">Select</button>
+  </mat-list-item>
+</mat-list>
+

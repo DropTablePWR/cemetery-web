@@ -1,0 +1,22 @@
+<div class="cemetery-description">
+  <h2 mat-line>{{selectedCemetery?.name}}</h2>
+  <p mat-line> {{selectedCemetery?.description}} </p>
+</div>
+<div class="cemetery-map">
+  <mat-grid-list cols="{{selectedCemetery?.max_grid_x}}" rowHeight="8rem" [gutterSize]="'15px'">
+    <div *ngFor="let tombstone of tombstonesWithCoordinates">
+      <mat-grid-tile
+        [class.guest]="tombstone.guest"
+        [class.not_null]="tombstone.t !== null"
+        (click)="tombstone.t === 'Book it...' ? createNewTombstone(tombstone.x, tombstone.y) : tombstone.guest ? openDialog(tombstone.guest) : false">
+        <p *ngIf="tombstone.t === 'Book it...'">
+          {{tombstone.t}}
+        </p>
+        <p *ngIf="tombstone.guest">
+          {{tombstone.guest.first_name}}
+          {{tombstone.guest.last_name}}
+        </p>
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>
+</div>
