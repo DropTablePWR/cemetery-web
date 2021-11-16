@@ -1,1 +1,71 @@
-<p>create-tombstone works!</p>
+<h1 class="form-header">Add a new Tombstone</h1>
+<div class="card m-3 form-card">
+  <div class="card-body">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+
+        <div class="form-group col-5">
+          <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+            <div *ngIf="f.first_name.errors.required">*First Name is required</div>
+          </div>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <label>
+              <mat-label>First name</mat-label>
+              <input matInput type="text" formControlName="first_name" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }"/>
+            </label>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group col-5">
+          <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+            <div *ngIf="f.last_name.errors.required">*Last Name is required</div>
+          </div>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <label>
+              <mat-label>Last name</mat-label>
+              <input matInput type="text" formControlName="last_name" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }"/>
+            </label>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group col-5">
+          <div *ngIf="submitted && f.birth_date.errors" class="invalid-feedback">
+            <div *ngIf="f.birth_date.errors.required">*Date of birth is required</div>
+          </div>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose date of birth</mat-label>
+            <label>
+              <input formControlName="birth_date" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.birth_date.errors }" matInput [matDatepicker]="picker1">
+            </label>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group col-5">
+          <div *ngIf="submitted && f.death_date.errors" class="invalid-feedback">
+            <div *ngIf="f.death_date.errors.required">*Date of death is required</div>
+          </div>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose date of death</mat-label>
+            <label>
+              <input formControlName="death_date" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.death_date.errors }" matInput [matDatepicker]="picker2">
+            </label>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <label class="invalid-feedback" *ngIf="submitted && registerForm.errors">{{ registerForm.errors?.dates}}</label>
+        <div class="text-center">
+          <button mat-raised-button color="primary">Save</button>
+          <button mat-raised-button color="primary" type="reset"  (click)="onReset()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

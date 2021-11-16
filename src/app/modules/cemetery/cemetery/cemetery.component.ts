@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CemeteryInterface} from "../../../interfaces/cemetery.interface";
 import {CemeteryService} from "../cemetery.service";
 import {TombstoneService} from "../../tombstone/tombstone.service";
@@ -27,6 +27,7 @@ export class CemeteryComponent implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
+    private router: Router,
     private cemeteryService: CemeteryService,
     public tombstoneService: TombstoneService,
     public dialog: MatDialog,
@@ -53,7 +54,7 @@ export class CemeteryComponent implements OnInit {
         let tombstone: TombstonesWithCoordinatesInterface = {
           x: x,
           y: y,
-          t: 'Book it...'
+          t: 'Book it...',
         };
         tombstonesWitchCoordinates.push(tombstone);
       }
@@ -77,12 +78,13 @@ export class CemeteryComponent implements OnInit {
   }
 
   createNewTombstone(x: number | string, y: number | string) {
-    console.log('rezerwuję: ' + x + y)
+    this.router.navigateByUrl(`cemetery/${this.id}/create-tombstone/${x}/${y}`)
 
   }
 
   openDialog(guest: GuestInterface) {
     this.dialog.open(InfoDialogComponent, {data: guest});
   }
+
 }
 
