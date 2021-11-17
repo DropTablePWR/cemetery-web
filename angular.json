@@ -69,10 +69,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cementary-web:build:production"
+              "browserTarget": "cementary-web:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             },
             "development": {
-              "browserTarget": "cementary-web:build:development"
+              "browserTarget": "cementary-web:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cementary-web:build"
+            "browserTarget": "cementary-web:build",
           }
         },
         "test": {

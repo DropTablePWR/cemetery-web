@@ -1,22 +1,35 @@
-<div class="cemetery-description">
-  <h2 mat-line>{{selectedCemetery?.name}}</h2>
-  <p mat-line> {{selectedCemetery?.description}} </p>
+<div *ngIf="selectedCemetery2" class="cemetery-description">
+  <h2 mat-line>{{selectedCemetery2.name}}</h2>
+  <p mat-line> {{selectedCemetery2.description}} </p>
 </div>
-<div class="cemetery-map">
-  <mat-grid-list cols="{{selectedCemetery?.max_grid_x}}" rowHeight="8rem" [gutterSize]="'15px'">
-    <div *ngFor="let tombstone of tombstonesWithCoordinates">
-      <mat-grid-tile
-        [class.guest]="tombstone.guest"
-        [class.not_null]="tombstone.t !== null"
-        (click)="tombstone.t === 'Book it...' ? createNewTombstone(tombstone.x, tombstone.y) : tombstone.guest ? openDialog(tombstone.guest) : false">
-        <p *ngIf="tombstone.t === 'Book it...'">
-          {{tombstone.t}}
-        </p>
-        <p *ngIf="tombstone.guest">
-          {{tombstone.guest.first_name}}
-          {{tombstone.guest.last_name}}
-        </p>
-      </mat-grid-tile>
+<div *ngIf="selectedCemetery2" class="cemetery-map">
+  <mat-grid-list cols="{{selectedCemetery2.area.length}}" rowHeight="3rem" [gutterSize]="'12px'">
+    <div *ngFor="let tombstones of selectedCemetery2.area; let xIndex = index">
+      <div *ngFor="let tombstone of tombstones; let yIndex = index">
+        <mat-grid-tile
+            #tooltip="matTooltip"
+            matTooltip="{{tombstone.fieldEnum === _fieldEnum.empty ? 'Book it...' : (tombstone.fieldEnum === _fieldEnum.tombstone && tombstone.tombstone) ? tombstone.tombstone.guest ? (tombstone.tombstone.guest?.firstName + ' ' + tombstone.tombstone!.guest!.lastName!)  : 'Reserved' : null}}"
+            [matTooltipPosition]= "'below'"
+            matTooltipClass="tooltip"
+            matTooltipHideDelay="100"
+          [class.guest]="tombstone.fieldEnum === _fieldEnum.tombstone && tombstone.tombstone && tombstone.tombstone.guest"
+          [class.reserved]="tombstone.fieldEnum === _fieldEnum.tombstone && tombstone.tombstone && !tombstone.tombstone.guest"
+          [class.not_null]="tombstone.fieldEnum !== _fieldEnum.forbidden"
+          (click)="tombstone.fieldEnum === _fieldEnum.empty ? createNewTombstone(xIndex, yIndex) : (tombstone.fieldEnum === _fieldEnum.tombstone && tombstone.tombstone) ? openDialog(tombstone.tombstone.guest) : false">
+          <p *ngIf="tombstone.fieldEnum === _fieldEnum.empty">
+            Book it...
+          </p>
+          <div *ngIf="tombstone.fieldEnum === _fieldEnum.tombstone && tombstone.tombstone">
+            <p *ngIf="tombstone.tombstone.guest">
+              {{tombstone.tombstone.guest?.firstName}}
+              {{tombstone.tombstone.guest?.lastName}}
+            </p>
+            <p *ngIf="!tombstone.tombstone.guest">
+              Reserved
+            </p>
+          </div>
+        </mat-grid-tile>
+      </div>
     </div>
   </mat-grid-list>
 </div>

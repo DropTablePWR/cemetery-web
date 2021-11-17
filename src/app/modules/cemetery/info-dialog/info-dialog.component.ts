@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {GuestInterface} from "../../../interfaces/guest.interface";
+import {Guest} from "../../../interfaces/full-cemetery.interface";
 
 @Component({
   selector: 'app-info-dialog',
@@ -11,7 +12,7 @@ export class InfoDialogComponent{
 
   constructor(
     public dialogRef: MatDialogRef<InfoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: GuestInterface
+    @Inject(MAT_DIALOG_DATA) public data: Guest
   ) { }
 
   onNoClick(): void {

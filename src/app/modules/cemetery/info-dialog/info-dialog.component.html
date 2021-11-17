@@ -1,9 +1,17 @@
-<h1 mat-dialog-title>{{data.first_name}} {{data.last_name}}</h1>
+<ng-container *ngIf="data">
+<h1 mat-dialog-title>{{data.firstName}} {{data.lastName}}</h1>
 <div mat-dialog-content>
-  <p><mat-icon>flare</mat-icon> {{data.birth_date | date}}</p>
-  <p><mat-icon>add</mat-icon> {{data.death_date | date}}</p>
+  <p><mat-icon>flare</mat-icon> {{data.birthDate | date}}</p>
+  <p><mat-icon>add</mat-icon> {{data.deathDate | date}}</p>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Close</button>
   <button mat-button (click)="onVisitClick(data.id)">Visit</button>
 </div>
+</ng-container>
+<ng-container *ngIf="!data">
+  <h1 mat-dialog-title>Tombstone reserved</h1>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Close</button>
+  </div>
+</ng-container>

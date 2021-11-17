@@ -10,7 +10,8 @@ export class SelectCemeteryComponent implements OnInit {
 
   constructor(public cemeteryService: CemeteryService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.cemeteryService.fetchAllCemeteries();
   }
 
 }

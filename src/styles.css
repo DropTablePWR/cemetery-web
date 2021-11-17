@@ -5,3 +5,7 @@ body { background-color: #9c27b0; margin: 0; font-family: Roboto, "Helvetica Neu
 p,span,h1,h2,h3,h4,h5{
   color: #f2e5dd;
 }
+.tooltip {
+  background-color: #9c27b0;
+  font-size: 18px;
+}

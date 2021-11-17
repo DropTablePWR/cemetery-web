@@ -10,6 +10,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialogModule} from "@angular/material/dialog";
+import {HttpClient} from "@angular/common/http";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 const routes: Routes = [
   {path: 'cemetery', component: SelectCemeteryComponent},
@@ -34,6 +36,10 @@ const routes: Routes = [
     MatGridListModule,
     MatFormFieldModule,
     MatDialogModule,
-  ]
+    MatTooltipModule,
+  ],
+  providers: [
+    HttpClient,
+  ],
 })
 export class CemeteryModule { }
