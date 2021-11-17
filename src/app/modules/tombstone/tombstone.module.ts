@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import { TombstoneComponent } from './tombstone/tombstone.component';
 import { CreateTombstoneComponent } from './create-tombstone/create-tombstone.component';
@@ -11,7 +11,6 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
-//  {path: 'cemetery/:cemeteryId/:tombstoneId', component: TombstoneComponent},
   {path: 'cemetery/:cemeteryId/create-tombstone/:x/:y', component: CreateTombstoneComponent},
 ];
 
@@ -29,6 +28,7 @@ const routes: Routes = [
     MatInputModule,
     MatNativeDateModule,
     MatButtonModule
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class TombstoneModule { }

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NewTombstone} from "../../../interfaces/new-tombstone";
+import {TombstoneService} from "../tombstone.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-create-tombstone',
@@ -20,7 +22,9 @@ export class CreateTombstoneComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private tombstoneService: TombstoneService,
+    private datePipe: DatePipe
     ) {
   }
 
@@ -51,15 +55,18 @@ export class CreateTombstoneComponent implements OnInit {
       return;
     }
     this.newTombstone = {
-      grid_x: this.x_position,
-      grid_y: this.y_position,
-      first_name: this.registerForm.value.first_name,
-      last_name: this.registerForm.value.last_name,
-      birth_date: this.registerForm.value.birth_date,
-      death_date: this.registerForm.value.death_date,
+      gridX: this.x_position,
+      gridY: this.y_position,
+      guest: {
+        firstName: this.registerForm.value.first_name,
+        lastName: this.registerForm.value.last_name,
+        birthDate: this.datePipe.transform(this.registerForm.value.birth_date,"yyyy-MM-dd") ,
+        deathDate: this.datePipe.transform(this.registerForm.value.death_date,"yyyy-MM-dd") ,
+      }
     };
 
-    alert('New tombstone added successfully \n' + JSON.stringify(this.newTombstone, null, 4));
+    this.tombstoneService.createNewTombstone(this.id, this.newTombstone);
+    alert('New tombstone added successfully');
     this.router.navigateByUrl(`/cemetery/${this.id}`)
   }
 

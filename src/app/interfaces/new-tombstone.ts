@@ -1,8 +1,12 @@
+export class NewGuest {
+  firstName: string = '';
+  lastName: string = '';
+  birthDate: string | null = null;
+  deathDate: string | null = null;
+}
+
 export class NewTombstone {
-  grid_x: number | undefined = undefined;
-  grid_y: number | undefined = undefined;
-  first_name: string = '';
-  last_name: string = '';
-  birth_date: Date | undefined = undefined;
-  death_date: Date | undefined = undefined;
+  gridX: number | undefined = undefined;
+  gridY: number | undefined = undefined;
+  guest: NewGuest = new NewGuest()
 }
