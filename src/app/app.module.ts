@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '', pathMatch: 'full'},
+  {path: '', redirectTo: '/cemetery', pathMatch: 'full'},
   {path: '', loadChildren: () => import('./modules/cemetery/cemetery.module').then(m => m.CemeteryModule)},
 ];
 

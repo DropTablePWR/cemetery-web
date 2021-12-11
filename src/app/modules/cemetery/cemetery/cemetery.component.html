@@ -1,6 +1,7 @@
 <div *ngIf="selectedCemetery2" class="cemetery-description">
+  <h1 style="cursor: pointer" mat-line (click)="goBack()"><mat-icon>keyboard_backspace</mat-icon>Back</h1>
   <h2 mat-line>{{selectedCemetery2.name}}</h2>
-  <p mat-line> {{selectedCemetery2.description}} </p>
+  <p style="font-size: 12px" mat-line> {{selectedCemetery2.description}} </p>
 </div>
 <div *ngIf="selectedCemetery2" class="cemetery-map">
   <mat-grid-list cols="{{selectedCemetery2.area.length}}" rowHeight="3rem" [gutterSize]="'12px'">

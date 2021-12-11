@@ -39,5 +39,9 @@ export class CemeteryComponent implements OnInit {
   openDialog(guest: Guest) {
     this.dialog.open(InfoDialogComponent, {data: guest});
   }
+
+  goBack() {
+    this.router.navigateByUrl(`cemetery`)
+  }
 }
 
