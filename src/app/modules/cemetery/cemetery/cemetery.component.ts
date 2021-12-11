@@ -43,5 +43,9 @@ export class CemeteryComponent implements OnInit {
   goBack() {
     this.router.navigateByUrl(`cemetery`)
   }
+
+  visitCemetery() {
+    this.router.navigateByUrl(`cemetery/visit?cemetery_id=${this.id}`)
+  }
 }
 

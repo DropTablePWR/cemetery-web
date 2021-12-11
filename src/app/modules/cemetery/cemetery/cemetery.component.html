@@ -1,5 +1,6 @@
 <div *ngIf="selectedCemetery2" class="cemetery-description">
   <h1 style="cursor: pointer" mat-line (click)="goBack()"><mat-icon>keyboard_backspace</mat-icon>Back</h1>
+  <h1 style="cursor: pointer" mat-line (click)="visitCemetery()">Visist Cemetery</h1>
   <h2 mat-line>{{selectedCemetery2.name}}</h2>
   <p style="font-size: 12px" mat-line> {{selectedCemetery2.description}} </p>
 </div>
