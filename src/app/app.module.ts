@@ -6,16 +6,19 @@ import {SharedModule} from "./shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { DemoComponent } from './demo/demo.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/cemetery', pathMatch: 'full'},
+  {path: 'cemetery/visit', component: DemoComponent},
   {path: '', loadChildren: () => import('./modules/cemetery/cemetery.module').then(m => m.CemeteryModule)},
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DemoComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
