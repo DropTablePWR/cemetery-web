@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router} from "@angular/router";
  
 @Component({
-  selector: 'app-unity',
+  selector: 'demo',
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.css']
 })
@@ -18,7 +19,7 @@ export class DemoComponent implements OnInit {
   async ngOnInit() {
  
  
-    let buildUrl = "Build";
+    let buildUrl = "demo/Build";
     let loaderUrl = buildUrl + "/build.loader.js";
     let config: any = {
       dataUrl: buildUrl + "/build.data",
@@ -53,21 +54,16 @@ export class DemoComponent implements OnInit {
     }
     loadingBar.style.display = "block";
  
-    var script = document.createElement("script");
-    script.src = loaderUrl;
-    script.onload = () => {
-      createUnityInstance(canvas, config, (progress: number) => {
-        progressBarFull.style.width = 100 * progress + "%";
-      }).then((unityInstance: { SetFullscreen: (arg0: number) => void; }) => {
-        loadingBar.style.display = "none";
-        fullscreenButton.onclick = () => {
-          unityInstance.SetFullscreen(1);
-        };
-      }).catch((message: any) => {
-        alert(message);
-      });
-    };
- 
+    createUnityInstance(canvas, config, (progress: any) => {
+      progressBarFull.style.width = 100 * progress + "%";
+    }).then((unityInstance: any) => {
+      loadingBar.style.display = "none";
+      fullscreenButton.onclick = () => {
+        unityInstance.SetFullscreen(1);
+      };
+    }).catch((message: any) => {
+      alert(message);
+    });
   }
  
 }
