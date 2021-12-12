@@ -19,8 +19,7 @@ export class DemoComponent implements OnInit {
   async ngOnInit() {
  
  
-    let buildUrl = "demo/Build";
-    let loaderUrl = buildUrl + "/build.loader.js";
+    let buildUrl = "assets/demo/Build";
     let config: any = {
       dataUrl: buildUrl + "/build.data",
       frameworkUrl: buildUrl + "/build.framework.js",
